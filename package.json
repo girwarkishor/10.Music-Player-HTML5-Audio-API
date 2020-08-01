@@ -1,0 +1,26 @@
+{
+  "name": "music-player",
+  "version": "1.0.0",
+  "description": "\"# 10.Music-Player-HTML5-Audio-API\"",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel public/index.html --out-dir development -p 3000",
+    "build": "parcel build public/index.html --out-dir dist --public-url ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/girwarkishor/10.Music-Player-HTML5-Audio-API.git"
+  },
+  "author": "Girwar Kishor Chandravanshi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/girwarkishor/10.Music-Player-HTML5-Audio-API/issues"
+  },
+  "homepage": "https://github.com/girwarkishor/10.Music-Player-HTML5-Audio-API#readme",
+  "dependencies": {
+    "@babel/core": "^7.11.0",
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@babel/runtime-corejs3": "^7.11.0",
+    "sass": "^1.26.10"
+  }
+}
