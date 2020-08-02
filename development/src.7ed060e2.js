@@ -189,11 +189,90 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/girwa/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../src/index.js":[function(require,module,exports) {
+},{"_css_loader":"C:/Users/girwa/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../src/images/Dil-Bechara-Title-Song.jpg":[function(require,module,exports) {
+module.exports = "/Dil-Bechara-Title-Song.f1336dba.jpg";
+},{}],"../src/images/Shankara-Re-Shankara-Tanhaji.jpg":[function(require,module,exports) {
+module.exports = "/Shankara-Re-Shankara-Tanhaji.a47a0068.jpg";
+},{}],"../src/images/Teri-Gali-Cover-Guru-Randhawa.jpg":[function(require,module,exports) {
+module.exports = "/Teri-Gali-Cover-Guru-Randhawa.bbdaa02c.jpg";
+},{}],"../src/images/*.jpg":[function(require,module,exports) {
+module.exports = {
+  "Dil-Bechara-Title-Song": require("./Dil-Bechara-Title-Song.jpg"),
+  "Shankara-Re-Shankara-Tanhaji": require("./Shankara-Re-Shankara-Tanhaji.jpg"),
+  "Teri-Gali-Cover-Guru-Randhawa": require("./Teri-Gali-Cover-Guru-Randhawa.jpg")
+};
+},{"./Dil-Bechara-Title-Song.jpg":"../src/images/Dil-Bechara-Title-Song.jpg","./Shankara-Re-Shankara-Tanhaji.jpg":"../src/images/Shankara-Re-Shankara-Tanhaji.jpg","./Teri-Gali-Cover-Guru-Randhawa.jpg":"../src/images/Teri-Gali-Cover-Guru-Randhawa.jpg"}],"../src/music/Dil-Bechara-Title-Song.mp3":[function(require,module,exports) {
+module.exports = "/Dil-Bechara-Title-Song.f8df2e1e.mp3";
+},{}],"../src/music/Shankara-Re-Shankara-Tanhaji.mp3":[function(require,module,exports) {
+module.exports = "/Shankara-Re-Shankara-Tanhaji.69fac39c.mp3";
+},{}],"../src/music/Teri-Gali-Cover-Guru-Randhawa.mp3":[function(require,module,exports) {
+module.exports = "/Teri-Gali-Cover-Guru-Randhawa.9d8191f3.mp3";
+},{}],"../src/music/*.mp3":[function(require,module,exports) {
+module.exports = {
+  "Dil-Bechara-Title-Song": require("./Dil-Bechara-Title-Song.mp3"),
+  "Shankara-Re-Shankara-Tanhaji": require("./Shankara-Re-Shankara-Tanhaji.mp3"),
+  "Teri-Gali-Cover-Guru-Randhawa": require("./Teri-Gali-Cover-Guru-Randhawa.mp3")
+};
+},{"./Dil-Bechara-Title-Song.mp3":"../src/music/Dil-Bechara-Title-Song.mp3","./Shankara-Re-Shankara-Tanhaji.mp3":"../src/music/Shankara-Re-Shankara-Tanhaji.mp3","./Teri-Gali-Cover-Guru-Randhawa.mp3":"../src/music/Teri-Gali-Cover-Guru-Randhawa.mp3"}],"../src/index.js":[function(require,module,exports) {
 "use strict";
 
 require("./scss/main.scss");
-},{"./scss/main.scss":"../src/scss/main.scss"}],"C:/Users/girwa/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+var _ = _interopRequireDefault(require("./images/*.jpg"));
+
+var _2 = _interopRequireDefault(require("./music/*.mp3"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var musicContainer = document.getElementById("music-container");
+var playBtn = document.getElementById("play");
+var prevBtn = document.getElementById("prev");
+var nextBtn = document.getElementById("next");
+var audio = document.getElementById("audio");
+var progress = document.getElementById("progress");
+var progressContainer = document.getElementById("progress-container");
+var title = document.getElementById("title");
+var cover = document.getElementById("cover"); // Song titles
+
+var songs = ["Dil-Bechara-Title-Song", "Shankara-Re-Shankara-Tanhaji", "Teri-Gali-Cover-Guru-Randhawa"]; // Keep track of song
+
+var songIndex = 2; // Initially load song details into DOM
+
+loadSong(songs[songIndex]); // Update song details
+
+function loadSong(song) {
+  title.innerHTML = song;
+  audio.src = _2.default["".concat(song)];
+  cover.src = _.default["".concat(song)];
+} // Play song
+
+
+function playSong() {
+  musicContainer.classList.add("play");
+  playBtn.querySelector("i.fas").classList.remove("fa-play");
+  playBtn.querySelector("i.fas").classList.add("fa-pause");
+  audio.play();
+} // Play song
+
+
+function pauseSong() {
+  musicContainer.classList.remove("play");
+  playBtn.querySelector("i.fas").classList.remove("fa-pause");
+  playBtn.querySelector("i.fas").classList.add("fa-play");
+  audio.pause();
+} // Event listener
+
+
+playBtn.addEventListener("click", function () {
+  var isPlaying = musicContainer.classList.contains("play");
+
+  if (isPlaying) {
+    pauseSong();
+  } else {
+    playSong();
+  }
+});
+},{"./scss/main.scss":"../src/scss/main.scss","./images/*.jpg":"../src/images/*.jpg","./music/*.mp3":"../src/music/*.mp3"}],"C:/Users/girwa/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -221,7 +300,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50209" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53960" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
