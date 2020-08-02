@@ -260,6 +260,51 @@ function pauseSong() {
   playBtn.querySelector("i.fas").classList.remove("fa-pause");
   playBtn.querySelector("i.fas").classList.add("fa-play");
   audio.pause();
+} // Previous song
+
+
+function prevSong() {
+  songIndex--;
+
+  if (songIndex < 0) {
+    songIndex = songs.length - 1;
+  }
+
+  loadSong(songs[songIndex]);
+  playSong();
+} // Next song
+
+
+function nextSong() {
+  songIndex++;
+
+  if (songIndex > songs.length - 1) {
+    songIndex = 0;
+  }
+
+  loadSong(songs[songIndex]);
+  playSong();
+} // Update progress bar
+
+
+function updateProgress(e) {
+  var _e$srcElement = e.srcElement,
+      duration = _e$srcElement.duration,
+      currentTime = _e$srcElement.currentTime; //   console.log(duration, currentTime);
+
+  var progressPercent = currentTime / duration * 100; //   console.log(progressPercent);
+
+  progress.style.width = "".concat(progressPercent, "%");
+} // Set progress bar
+
+
+function setProgress(e) {
+  var width = this.clientWidth; //   console.log(width); // Shows total width of progressbar
+
+  var clickX = e.offsetX; //   console.log(clickX); // check the width where we clicked
+
+  var duration = audio.duration;
+  audio.currentTime = clickX / width * duration;
 } // Event listener
 
 
@@ -271,7 +316,16 @@ playBtn.addEventListener("click", function () {
   } else {
     playSong();
   }
-});
+}); // Change song
+
+prevBtn.addEventListener("click", prevSong);
+nextBtn.addEventListener("click", nextSong); // Time/song update
+
+audio.addEventListener("timeupdate", updateProgress); // Click on progress bar
+
+progressContainer.addEventListener("click", setProgress); // Song end
+
+audio.addEventListener("ended", nextSong);
 },{"./scss/main.scss":"../src/scss/main.scss","./images/*.jpg":"../src/images/*.jpg","./music/*.mp3":"../src/music/*.mp3"}],"C:/Users/girwa/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
